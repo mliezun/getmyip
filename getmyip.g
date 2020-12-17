@@ -10,8 +10,13 @@ fn parseIP(address) {
 }
 
 fn getIP(rq, rs) {
-    io.println("Request from --> " + rq.address)
-    rs.write(200, parseIP(rq.address))
+    let address = parseIP(rq.address)
+    let forwarded = rq.headers["X-Forwarded-For"]
+    if forwarded != nil {
+        address = forwarded[0]
+    }
+    io.println("Request from --> " + address)
+    rs.write(200, address)
 }
 
 http.handler("/", getIP)
