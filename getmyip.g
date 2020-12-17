@@ -17,5 +17,10 @@ fn getIP(rq, rs) {
 http.handler("/", getIP)
 
 let listen = ":8092"
+let port = env.get("PORT")
+if port != "" {
+    listen = ":" + port
+}
+
 io.println("Listen " + listen)
 http.listen(listen)
