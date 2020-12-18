@@ -1,12 +1,15 @@
-fn parseIP(address) {
-    let aux = 0
-    for let i = address.length-1; i > -1; i = i - 1 {
-        if address[i] == ":" {
-            aux = i
-            i = -1
+fn findReversed(string, char) {
+    for let i = string.length-1; i > -1; i = i - 1 {
+        if string[i] == char {
+            return i
         }
     }
-    return address[:aux]
+    return -1
+}
+
+fn parseIP(address) {
+    let ix = findReversed(address, ":")
+    return address[:ix]
 }
 
 fn getIP(rq, rs) {
