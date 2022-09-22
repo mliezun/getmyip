@@ -24,7 +24,7 @@ fn getIP(rq, rs) {
 
 http.handler("/", getIP)
 
-let listen = ":8092"
+let listen = ":8080"
 let port = env.get("PORT")
 if port != "" {
     listen = ":" + port
